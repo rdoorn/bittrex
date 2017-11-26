@@ -12,9 +12,9 @@ type Market struct {
 }
 
 // GetMarkets returns all markets
-func GetMarkets() (result []Market, err error) {
+func (u *User) GetMarkets() (result []Market, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getmarkets", nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getmarkets", nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return

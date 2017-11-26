@@ -15,9 +15,9 @@ type Orderb struct {
 // GetOrderBook returns order book
 // market = market (eg. btc-ltc)
 // booktype = what book to get (eg. buy, sell or both)
-func GetOrderBook(market, booktype string) (result OrderBook, err error) {
+func (u *User) GetOrderBook(market, booktype string) (result OrderBook, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getorderbook?market="+market+"&type="+booktype, nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getorderbook?market="+market+"&type="+booktype, nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return

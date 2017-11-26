@@ -17,9 +17,9 @@ type MarketSummary struct {
 }
 
 // GetMarketsSummary returns all market status
-func GetMarketsSummary() (result []MarketSummary, err error) {
+func (u *User) GetMarketsSummary() (result []MarketSummary, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getmarketsummaries", nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getmarketsummaries", nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return
@@ -29,9 +29,9 @@ func GetMarketsSummary() (result []MarketSummary, err error) {
 }
 
 // GetMarketSummary returns summary of 1 market
-func GetMarketSummary(market string) (result MarketSummary, err error) {
+func (u *User) GetMarketSummary(market string) (result MarketSummary, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getmarketsummary?market="+market, nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getmarketsummary?market="+market, nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return

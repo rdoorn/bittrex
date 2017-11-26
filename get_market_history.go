@@ -40,9 +40,9 @@ func (t *Time) UnmarshalJSON(b []byte) (err error) {
 
 // GetHistory returns order history
 // market = market (eg. btc-ltc)
-func GetHistory(market string) (result []History, err error) {
+func (u *User) GetHistory(market string) (result []History, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getmarkethistory?market="+market, nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getmarkethistory?market="+market, nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return

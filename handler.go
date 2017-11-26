@@ -23,7 +23,7 @@ import (
 // We are currently restricting orders to 500 open orders and 200,000 orders a day
 //
 
-func getURL(method string, path string, data interface{}, auth bool) ([]byte, error) {
+func (u *User) getURL(method string, path string, data interface{}, auth bool) ([]byte, error) {
 	jsondata, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -42,13 +42,13 @@ func getURL(method string, path string, data interface{}, auth bool) ([]byte, er
 	if auth == true {
 		nonce := time.Now().UnixNano()
 		q := req.URL.Query()
-		if apiKey == "" || apiSecret == "" {
+		if u.APIKey == "" || u.APISecret == "" {
 			log.Fatalln("No api Key or Secret set!")
 		}
-		q.Set("apikey", apiKey)
+		q.Set("apikey", u.APIKey)
 		q.Set("nonce", fmt.Sprintf("%d", nonce))
 		req.URL.RawQuery = q.Encode()
-		mac := hmac.New(sha512.New, []byte(apiSecret))
+		mac := hmac.New(sha512.New, []byte(u.APISecret))
 		_, err = mac.Write([]byte(req.URL.String()))
 		if err != nil {
 			return nil, err

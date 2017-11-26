@@ -12,9 +12,9 @@ type Balance struct {
 }
 
 // GetBalances returns summary of your belances
-func GetBalances() (result []Balance, err error) {
+func (u *User) GetBalances() (result []Balance, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/account/getbalances", nil, true)
+	r, err := u.getURL("GET", "/api/v1.1/account/getbalances", nil, true)
 	err = parseData(r, &response)
 	if err != nil {
 		return
@@ -25,9 +25,9 @@ func GetBalances() (result []Balance, err error) {
 
 // GetBalance returns balance of your currency
 // currency = currency (e.g. btc)
-func GetBalance(currency string) (result []Balance, err error) {
+func (u *User) GetBalance(currency string) (result []Balance, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/account/getbalance?currency="+currency, nil, true)
+	r, err := u.getURL("GET", "/api/v1.1/account/getbalance?currency="+currency, nil, true)
 	err = parseData(r, &response)
 	if err != nil {
 		return

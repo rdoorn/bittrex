@@ -30,9 +30,9 @@ type OrderG struct {
 
 // GetOrder returns the status of an order
 // uuid = orderid
-func GetOrder(orderID string) (result OrderG, err error) {
+func (u *User) GetOrder(orderID string) (result OrderG, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/account/getorder?uuid="+orderID, nil, true)
+	r, err := u.getURL("GET", "/api/v1.1/account/getorder?uuid="+orderID, nil, true)
 	if err != nil {
 		return
 	}

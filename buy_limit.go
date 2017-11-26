@@ -14,9 +14,9 @@ type BuyLimitResult struct {
 // market = market (eg. btc-ltc)
 // quantity = the ammount to buy
 // rate = the rate to buy at
-func BuyLimit(market string, quantity float64, rate float64) (result BuyLimitResult, err error) {
+func (u *User) BuyLimit(market string, quantity float64, rate float64) (result BuyLimitResult, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", fmt.Sprintf("/api/v1.1/market/buylimit?market=%s&quantity=%.8f&rate=%.8f", market, quantity, rate), nil, true)
+	r, err := u.getURL("GET", fmt.Sprintf("/api/v1.1/market/buylimit?market=%s&quantity=%.8f&rate=%.8f", market, quantity, rate), nil, true)
 	if err != nil {
 		return
 	}

@@ -1,13 +1,7 @@
 package bittrex
 
 import (
-	"io/ioutil"
-	"strings"
-	"sync"
 	"time"
-
-	"github.com/BurntSushi/toml"
-	yaml "gopkg.in/yaml.v2"
 )
 
 const (
@@ -17,6 +11,24 @@ const (
 	httpTimeout time.Duration = 30
 )
 
+var (
+	testMode = false
+)
+
+type User struct {
+	APIKey    string
+	APISecret string
+}
+
+func NewUser(key, secret string) *User {
+	u := &User{
+		APIKey:    key,
+		APISecret: secret,
+	}
+	return u
+}
+
+/*
 var (
 	config     *KeyConfig
 	configLock sync.RWMutex
@@ -84,3 +96,4 @@ func Lock() {
 func Unlock() {
 	configLock.Unlock()
 }
+*/

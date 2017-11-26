@@ -12,9 +12,9 @@ type Currency struct {
 }
 
 // GetCurrencies returns all currencies
-func GetCurrencies() (result []Currency, err error) {
+func (u *User) GetCurrencies() (result []Currency, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getcurrencies", nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getcurrencies", nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return

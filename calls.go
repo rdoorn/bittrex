@@ -11,7 +11,7 @@ func parseData(data []byte, feedback interface{}) (err error) {
 }
 
 // Register a user to set variables
-func Register(key, secret string) {
+/*func Register(key, secret string) {
 	apiKey = key
 	apiSecret = secret
-}
+}*/

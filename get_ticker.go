@@ -9,9 +9,9 @@ type Ticker struct {
 
 // GetTicker returns summary of 1 market
 // market = market (eg. btc-ltc)
-func GetTicker(market string) (result Ticker, err error) {
+func (u *User) GetTicker(market string) (result Ticker, err error) {
 	var response jsonResponse
-	r, err := getURL("GET", "/api/v1.1/public/getticker?market="+market, nil, false)
+	r, err := u.getURL("GET", "/api/v1.1/public/getticker?market="+market, nil, false)
 	err = parseData(r, &response)
 	if err != nil {
 		return
