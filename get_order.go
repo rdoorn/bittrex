@@ -44,3 +44,19 @@ func (u *User) GetOrder(orderID string) (result OrderG, err error) {
 	err = parseData(response.Result, &result)
 	return
 }
+
+// GetOpenOrders returns the all open orders
+func (u *User) GetOpenOrders() (result []OrderG, err error) {
+	var response jsonResponse
+	r, err := u.getURL("GET", "/api/v1.1/account/getopenorders", nil, true)
+	if err != nil {
+		return
+	}
+	log.Printf("Bittrex: GetOpenOrders: %s", string(r))
+	err = parseData(r, &response)
+	if err != nil {
+		return
+	}
+	err = parseData(response.Result, &result)
+	return
+}
