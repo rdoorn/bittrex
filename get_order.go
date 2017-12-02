@@ -28,6 +28,32 @@ type OrderG struct {
 	ConditionTarget            string
 }
 
+type OrderO struct {
+	AccountId                  string
+	OrderUuid                  string  `json:"OrderUuid"`
+	Exchange                   string  `json:"Exchange"`
+	Type                       string  `json:"OrderType"`
+	Quantity                   float64 `json:"Quantity"`
+	QuantityRemaining          float64 `json:"QuantityRemaining"`
+	Limit                      float64 `json:"Limit"`
+	Reserved                   float64
+	ReserveRemaining           float64
+	CommissionReserved         float64
+	CommissionReserveRemaining float64
+	CommissionPaid             float64
+	Price                      float64 `json:"Price"`
+	PricePerUnit               float64 `json:"PricePerUnit"`
+	Opened                     string
+	Closed                     string
+	IsOpen                     bool
+	Sentinel                   string
+	CancelInitiated            bool
+	ImmediateOrCancel          bool
+	IsConditional              bool
+	Condition                  string
+	ConditionTarget            string
+}
+
 // GetOrder returns the status of an order
 // uuid = orderid
 func (u *User) GetOrder(orderID string) (result OrderG, err error) {
@@ -46,9 +72,9 @@ func (u *User) GetOrder(orderID string) (result OrderG, err error) {
 }
 
 // GetOpenOrders returns the all open orders
-func (u *User) GetOpenOrders() (result []OrderG, err error) {
+func (u *User) GetOpenOrders() (result []OrderO, err error) {
 	var response jsonResponse
-	r, err := u.getURL("GET", "/api/v1.1/account/getopenorders", nil, true)
+	r, err := u.getURL("GET", "/api/v1.1/market/getopenorders", nil, true)
 	if err != nil {
 		return
 	}
