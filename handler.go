@@ -57,7 +57,7 @@ func (u *User) getURL(method string, path string, data interface{}, auth bool) (
 		req.Header.Add("apisign", sig)
 	}
 
-	if testMode {
+	if TestMode {
 		p := strings.Split(req.URL.Path, "?")
 		ps := strings.Split(p[0], "/")
 		log.Printf("TEST MODE: Path: %s Request: %+v ", ps[len(ps)-1], req)

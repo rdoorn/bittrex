@@ -12,7 +12,7 @@ const (
 )
 
 var (
-	testMode = false
+	TestMode = false
 )
 
 type User struct {
@@ -36,7 +36,7 @@ var (
 	apiKey    string
 	apiSecret string
 
-	testMode = false
+	TestMode = false
 )
 
 // Config holds your main config

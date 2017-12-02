@@ -9,7 +9,7 @@ var testorder = "xxx-xxx-xxx-xxx"
 func TestBuyAndSell(t *testing.T) {
 
 	/*
-		testMode = false
+		TestMode = false
 		if err := LoadConfig("../../tiger.yaml"); err != nil {
 			log.Fatalf("Error reading tiget.yaml: %s", err)
 		}
