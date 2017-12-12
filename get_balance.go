@@ -30,7 +30,6 @@ func (u *User) GetBalances() (result []Balance, err error) {
 func (u *User) GetBalance(currency string) (result Balance, err error) {
 	var response jsonResponse
 	r, err := u.getURL("GET", "/api/v1.1/account/getbalance?currency="+currency, nil, true)
-	fmt.Printf("Got data 1: %+v\n", string(r))
 	err = parseData(r, &response)
 	if err != nil {
 		return
